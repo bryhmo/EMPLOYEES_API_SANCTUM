@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('photo')->nullable();
+            $table->enum('role',['operational staff','waiter','coordinator','intern','customer service'])->default('operational staff');
+            $table->enum('status',['Excellent','Very Good','Good','Average','Fair'])->default('Excellent');
             $table->timestamps();
         });
     }
