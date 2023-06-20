@@ -11,7 +11,7 @@ class UpdateEmployeeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,7 @@ class UpdateEmployeeRequest extends FormRequest
     {
         return [
             'password' => 'required|min:3|max:8',
-            'email' => 'required|email',
-            
+            'email' => 'required|email', 
         ];
     }
 }

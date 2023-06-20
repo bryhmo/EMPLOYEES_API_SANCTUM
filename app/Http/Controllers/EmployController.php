@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use Validator;
+
 
 class EmployController extends Controller
 {
@@ -13,23 +15,38 @@ class EmployController extends Controller
     }
     public function AddData(Request $request)
     {
-        $employee = new Employee;
-        $employee->name = $request->name;
-        $employee->email= $request->email;
-        $employee->password= $request->password;
-        $employee->phone= $request->phone;
-        $employee->address = $request->address;
-        $employee->role = $request->role;
-        $employee->status = $request->status;
-        $result=$employee->save();
-        if($result)
+        $rules=array(
+            'password' => 'required|min:3|max:8', 
+        );
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if(!$validator)
         {
-            return["output"=>"data has been saved succesfully"];
+            return ($validator->errors());
         }
         else
         {
-            return["output"=>"data input fail!!!!!!"];
+            $employee = new Employee;
+            $employee->name = $request->name;
+            $employee->email= $request->email;
+            $employee->password= $request->password;
+            $employee->phone= $request->phone;
+            $employee->address = $request->address;
+            $employee->role = $request->role;
+            $employee->status = $request->status;
+            $result=$employee->save();
+            if($result)
+            {
+                return["output"=>"data has been saved succesfully"];
+            }
+            else
+            {
+                return["output"=>"data input fail!!!!!!"];
+            }
+
         }
+
     }
     public function Update(Request $request)
     {
@@ -80,6 +97,25 @@ class EmployController extends Controller
     {
         $employee = Employee::where('name',"like","%".$name."%")->get();
         return $employee;
+
+    }
+    public function testData()
+    {
+        $rules=array(
+            
+            'password' => 'required', 
+        );
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if($validator->fails())
+        {
+            return ($validator->errors());
+        }
+        else
+        {
+            return ['x'=>'Y'];
+        }
 
     }
 }
