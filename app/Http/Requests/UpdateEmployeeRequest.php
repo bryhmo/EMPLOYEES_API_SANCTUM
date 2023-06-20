@@ -22,7 +22,10 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'password' => 'required|min:3|max:8',
+            'email' => 'required|email',
+            
         ];
     }
 }
+
