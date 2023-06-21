@@ -99,23 +99,5 @@ class EmployController extends Controller
         return $employee;
 
     }
-    public function testData()
-    {
-        $rules=array(
-            
-            'password' => 'required', 
-        );
-
-        $validator = Validator::make($request->all(),$rules);
-
-        if($validator->fails())
-        {
-            return ($validator->errors());
-        }
-        else
-        {
-            return ['x'=>'Y'];
-        }
-
-    }
+    //testing of api validation
 }
