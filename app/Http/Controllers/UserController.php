@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,7 +24,7 @@ class UserController extends Controller
              $token = $user->createToken('my-app-token')->plainTextToken;
         
             $response = [
-                'user' => $user,
+                'name' => $user,
                 'token' => $token
             ];
         
