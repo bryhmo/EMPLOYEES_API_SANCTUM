@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +18,7 @@ use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
     return view('welcome');
+    // $user = User::all();
+    // dd($user);
 });
 

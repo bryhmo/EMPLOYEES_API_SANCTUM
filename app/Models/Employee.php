@@ -9,14 +9,4 @@ class Employee extends Model
 {
     use HasFactory;
 
-
-    //mutator
-
-    public function password():Attribute
-    {
-        return Attribute::make(
-            get:fn($value)=> bcrypt($value)
-        );
-    }
-
 }
