@@ -18,9 +18,9 @@ class UsersController extends Controller
             'password' => 'required',
             'name' => 'required',
         ]);
-     
+     //checking if the user exist in our database 
         $user = User::where('email', $request->email)->first();
-     
+     //if not the user and the matching eamil return response error
         if (! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
@@ -35,5 +35,8 @@ class UsersController extends Controller
         ];
         return response($response,202);
     }
-    
+    public function GetUsersData()
+    {
+        return User::all();
+    }
 }

@@ -27,12 +27,6 @@ use Illuminate\Validation\ValidationException;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
-    Route::get('/getusers',[EmployController::class,'ViewData']);
-    Route::post('/addrecord',[EmployController::class,'AddData']);
-    Route::put('/update',[EmployController::class,'Update']);
-    Route::delete('/deleterecord/{id}',[EmployController::class,'DeleteData']);
-    Route::get('/searchrecord/{name}',[EmployController::class,'SearchRecord']);
-    Route::get('/searchrecordwithcharacter/{name}',[EmployController::class,'SearchRecordWithCharacter']);
 });
 
 // Route::resource("/employees", EmployeeController::class);
@@ -40,10 +34,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //Route::post('/searchrecord/{name}',[EmployController::class,'SearchRecord']);
+//->middleware('web');
+
+
+Route::middleware(['api'])->group(function () {
+   
+    
+});
 
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    
+    Route::get('/getusers',[EmployController::class,'ViewData']);
+    Route::post('/addrecord',[EmployController::class,'AddData']);
+    Route::put('/update',[EmployController::class,'Update']);
+    Route::delete('/deleterecord/{id}',[EmployController::class,'DeleteData']);
+    Route::get('/searchrecord/{name}',[EmployController::class,'SearchRecord']);
+    Route::get('/searchrecordwithcharacter/{name}',[EmployController::class,'SearchRecordWithCharacter']);
 });
 
 

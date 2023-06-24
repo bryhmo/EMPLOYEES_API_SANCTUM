@@ -48,7 +48,7 @@ class Kernel extends HttpKernel
         ],
         'AgeCheck'=>[
             \App\Http\Middleware\AgeCheck::class,
-        ]
+        ],
     ];
 
     /**
